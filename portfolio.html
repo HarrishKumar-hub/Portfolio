@@ -1,0 +1,424 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Harrish — Full Stack Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Syne:wght@300;400;500;600;700&family=Syne+Mono&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- SCROLL PROGRESS -->
+<div id="sprog"></div>
+
+<!-- LOADER -->
+<div id="loader">
+  <div class="ld-name"><span>Harrish</span></div>
+  <div class="ld-track"><div class="ld-fill" id="ldfill"></div></div>
+  <div class="ld-pct" id="ldpct">0%</div>
+</div>
+
+<!-- CURSOR -->
+<div id="cdot"></div>
+<div id="cring"></div>
+<div id="clabel" id="clabel"></div>
+
+<!-- SERVICE PREVIEW -->
+<div id="svc-preview"><div class="svc-prev-inner" id="svc-prev-txt">Preview</div></div>
+
+<!-- ══ NAV ══ -->
+<nav id="nav">
+  <a class="logo" href="#hero">Harrish</a>
+  <div class="nav-r">
+    <ul class="nav-links">
+      <li><a href="#work">Work</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <!-- Nav Social Icons -->
+    <div class="nav-socials">
+      <a class="nav-soc" href="mailto:harishchronicles@gmail.com" title="Email">
+        <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+      </a>
+      <a class="nav-soc" href="https://www.linkedin.com/in/harrish-kumar-950578317" target="_blank" title="LinkedIn">
+        <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+      </a>
+      <a class="nav-soc" href="https://github.com/HarrishKumar-hub" target="_blank" title="GitHub">
+        <svg viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+      </a>
+      <a class="nav-soc" href="https://www.instagram.com/harishchronicles" target="_blank" title="Instagram">
+        <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+      </a>
+    </div>
+    <a class="nav-cta" href="#contact"><span>Hire Me</span></a>
+  </div>
+</nav>
+
+<!-- ══ HERO ══ -->
+<section id="hero">
+  <div class="h-bg">
+    <div class="h-noise"></div>
+    <div class="h-grid"></div>
+  </div>
+  <div class="h-orb h-orb1" id="orb1"></div>
+  <div class="h-orb h-orb2" id="orb2"></div>
+  <div class="h-init" id="hinit">H</div>
+  <div class="h-scroll">Scroll Down</div>
+  <div class="h-text">
+    <div class="h-eye">Full Stack Developer &nbsp;·&nbsp; App Developer &nbsp;·&nbsp; Freelance Creative</div>
+    <h1 class="hh">
+      <span class="hw"><span>Building</span></span>&nbsp;
+      <span class="hw"><em><span>digital</span></em></span><br>
+      <span class="hw"><span>futures.</span></span>
+    </h1>
+    <p class="h-sub">Web. Mobile. 3D. Design. — I craft end-to-end digital experiences, from real-time apps to brand identities. Based in India, working worldwide.</p>
+    <div class="h-ctas">
+      <a class="btn-p" href="#work"><span>View My Work</span></a>
+      <a class="btn-g" href="#contact">Let's Talk →</a>
+    </div>
+  </div>
+  <div class="h-tags">
+    <span class="h-tag">Web Dev</span>
+    <span class="h-tag">App Dev</span>
+    <span class="h-tag">3D Modelling</span>
+    <span class="h-tag">UI Design</span>
+    <span class="h-tag">Logo Design</span>
+    <span class="h-tag">Poster Design</span>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <div class="mqi"><span>Full Stack Developer</span><div class="mqdot"></div></div>
+    <div class="mqi"><span>Web Development</span><div class="mqdot"></div></div>
+    <div class="mqi"><span>Mobile Apps</span><div class="mqdot"></div></div>
+    <div class="mqi"><span>Real-Time Systems</span><div class="mqdot"></div></div>
+    <div class="mqi"><span>UI · UX Design</span><div class="mqdot"></div></div>
+    <div class="mqi"><span>3D Modelling</span><div class="mqdot"></div></div>
+    <div class="mqi"><span>Logo Design</span><div class="mqdot"></div></div>
+    <div class="mqi"><span>Poster Design</span><div class="mqdot"></div></div>
+    <div class="mqi"><span>Freelancer</span><div class="mqdot"></div></div>
+    <div class="mqi"><span>India · Worldwide</span><div class="mqdot"></div></div>
+    <div class="mqi"><span>Full Stack Developer</span><div class="mqdot"></div></div>
+    <div class="mqi"><span>Web Development</span><div class="mqdot"></div></div>
+    <div class="mqi"><span>Mobile Apps</span><div class="mqdot"></div></div>
+    <div class="mqi"><span>Real-Time Systems</span><div class="mqdot"></div></div>
+    <div class="mqi"><span>UI · UX Design</span><div class="mqdot"></div></div>
+    <div class="mqi"><span>3D Modelling</span><div class="mqdot"></div></div>
+    <div class="mqi"><span>Logo Design</span><div class="mqdot"></div></div>
+    <div class="mqi"><span>Poster Design</span><div class="mqdot"></div></div>
+    <div class="mqi"><span>Freelancer</span><div class="mqdot"></div></div>
+    <div class="mqi"><span>India · Worldwide</span><div class="mqdot"></div></div>
+  </div>
+</div>
+
+<hr class="d">
+
+<!-- ══ WORK ══ -->
+<div id="work">
+
+  <div class="ws">
+    <div class="ws-ov"></div>
+    <div class="ws-img"><div class="ws-ph"><div class="ws-ph-t">Add App Screenshot Here</div></div></div>
+    <div class="ws-num">(01)</div>
+    <div class="ws-pills">
+      <span class="pill on">Mobile App</span>
+      <span class="pill">Real-Time</span>
+      <span class="pill">Full Stack</span>
+    </div>
+    <div class="ws-c">
+      <h2 class="ws-title">Real-Time<br><em>Messaging App</em></h2>
+      <p class="ws-desc">A live messaging application built from scratch — instant delivery, presence indicators, read receipts, and media sharing. Fast, reliable, built to scale.</p>
+      <div class="ws-meta">
+        <span class="ws-stack">React Native · Node.js · Socket.io · MongoDB</span>
+        <span class="ws-yr">2024</span>
+        <a class="vlink" href="#">View Project →</a>
+      </div>
+    </div>
+  </div>
+
+  <hr class="d">
+
+  <div class="ws">
+    <div class="ws-ov"></div>
+    <div class="ws-img"><div class="ws-ph"><div class="ws-ph-t">Add Website Screenshot Here</div></div></div>
+    <div class="ws-num">(02)</div>
+    <div class="ws-pills">
+      <span class="pill on">Web App</span>
+      <span class="pill">Full Stack</span>
+      <span class="pill">Frontend</span>
+    </div>
+    <div class="ws-c">
+      <h2 class="ws-title">Web<br><em>Application</em></h2>
+      <p class="ws-desc">A full-stack web application focused on performance and UX — clean interface, fast load times, and a robust backend powering every interaction.</p>
+      <div class="ws-meta">
+        <span class="ws-stack">React · Next.js · Node.js · PostgreSQL</span>
+        <span class="ws-yr">2024</span>
+        <a class="vlink" href="#">View Project →</a>
+      </div>
+    </div>
+  </div>
+
+  <hr class="d">
+
+  <div class="ws">
+    <div class="ws-ov"></div>
+    <div class="ws-img"><div class="ws-ph"><div class="ws-ph-t">Add Website Screenshot Here</div></div></div>
+    <div class="ws-num">(03)</div>
+    <div class="ws-pills">
+      <span class="pill on">Website</span>
+      <span class="pill">Freelance</span>
+      <span class="pill">UI Design</span>
+    </div>
+    <div class="ws-c">
+      <h2 class="ws-title">Client<br><em>Website</em></h2>
+      <p class="ws-desc">A bespoke website crafted end-to-end — custom animations, responsive layouts, and a visual identity that stands out in the market.</p>
+      <div class="ws-meta">
+        <span class="ws-stack">HTML · CSS · JavaScript · Figma</span>
+        <span class="ws-yr">2024</span>
+        <a class="vlink" href="#">View Project →</a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<hr class="d">
+
+<!-- ══ SERVICES ══ -->
+<section id="services">
+  <div class="svc-intro">
+    <div class="rvl">
+      <div class="seye">What I Do</div>
+      <h2 class="sh2">Freelance<br><em>services</em><br>for the bold.</h2>
+    </div>
+    <div class="rv d2">
+      <p>From startups needing a first impression to influencers needing a visual identity — I deliver across every creative and technical discipline. One person. Full capability.</p>
+    </div>
+  </div>
+  <div class="svc-list">
+    <div class="svc-row rv" data-svc="Website Building">
+      <div class="svc-n">01.</div>
+      <div class="svc-name">Website Building</div>
+      <div class="svc-desc">Custom websites from concept to deployment — fast, responsive & memorable.</div>
+      <div class="svc-arr">↗</div>
+    </div>
+    <div class="svc-row rv d1" data-svc="App Development">
+      <div class="svc-n">02.</div>
+      <div class="svc-name">App Development</div>
+      <div class="svc-desc">Mobile & web apps with real-time features and great UX.</div>
+      <div class="svc-arr">↗</div>
+    </div>
+    <div class="svc-row rv d1" data-svc="3D Modelling">
+      <div class="svc-n">03.</div>
+      <div class="svc-name">3D Modelling</div>
+      <div class="svc-desc">Product renders, architectural visuals & stylised 3D assets.</div>
+      <div class="svc-arr">↗</div>
+    </div>
+    <div class="svc-row rv d2" data-svc="UI Design">
+      <div class="svc-n">04.</div>
+      <div class="svc-name">UI Design</div>
+      <div class="svc-desc">Interface design that feels intuitive and looks world-class.</div>
+      <div class="svc-arr">↗</div>
+    </div>
+    <div class="svc-row rv d2" data-svc="Logo Design">
+      <div class="svc-n">05.</div>
+      <div class="svc-name">Logo Design</div>
+      <div class="svc-desc">Logos for startups that need to make a mark — iconic & built to last.</div>
+      <div class="svc-arr">↗</div>
+    </div>
+    <div class="svc-row rv d3" data-svc="Poster Design">
+      <div class="svc-n">06.</div>
+      <div class="svc-name">Poster Design</div>
+      <div class="svc-desc">Scroll-stopping graphics for influencers, events & social media.</div>
+      <div class="svc-arr">↗</div>
+    </div>
+  </div>
+</section>
+
+<hr class="d">
+
+<!-- ══ ABOUT ══ -->
+<section id="about">
+  <div class="ab-l rvl">
+    <div class="eye">About Me</div>
+    <h2>Building with<br><em>intention,</em><br>shipping with<br>precision.</h2>
+  </div>
+  <div class="ab-r">
+    <p class="rv d1">I'm <strong>Harrish</strong> — a full-stack developer and freelance creative based in India. I build web applications, mobile apps, and everything in between.</p>
+    <p class="rv d2">I've built <strong>real-time messaging applications from scratch</strong>, designed interfaces that convert, and crafted brand identities for startups and creators who needed to stand out.</p>
+    <p class="rv d3"><strong>Code + Design + Strategy</strong> — I don't hand off between teams. I do it all, which means faster delivery, tighter quality, and a single point of ownership.</p>
+    <div class="ab-stats rv d4">
+      <div class="stat-card" data-tilt><div class="stat-n">6+</div><div class="stat-l">Services Offered</div></div>
+      <div class="stat-card" data-tilt><div class="stat-n">Full</div><div class="stat-l">Stack Developer</div></div>
+      <div class="stat-card" data-tilt><div class="stat-n">Web &</div><div class="stat-l">Mobile Apps</div></div>
+      <div class="stat-card" data-tilt><div class="stat-n">∞</div><div class="stat-l">Ideas Shipped</div></div>
+    </div>
+  </div>
+</section>
+
+<hr class="d">
+
+<!-- ══ SKILLS ══ -->
+<section id="skills">
+  <div class="sk-hdr">
+    <div class="rvl">
+      <div class="seye">Toolkit</div>
+      <h2 class="sh2">What I<br><em>build with</em></h2>
+    </div>
+    <div class="rv d2"><p>A full-stack toolkit spanning web, mobile, design and infrastructure — every layer of the product, handled in-house.</p></div>
+  </div>
+  <div class="sk-grid">
+    <div class="sk-col rv d1">
+      <div class="sk-num">(01)</div><div class="sk-name">Frontend</div>
+      <div class="sk-item"><div class="sk-itop"><span class="sk-lbl">React / Next.js</span><span class="sk-pct">92%</span></div><div class="sk-track"><div class="sk-fill" data-w="92"></div></div></div>
+      <div class="sk-item"><div class="sk-itop"><span class="sk-lbl">TypeScript</span><span class="sk-pct">85%</span></div><div class="sk-track"><div class="sk-fill" data-w="85"></div></div></div>
+      <div class="sk-item"><div class="sk-itop"><span class="sk-lbl">HTML / CSS</span><span class="sk-pct">95%</span></div><div class="sk-track"><div class="sk-fill" data-w="95"></div></div></div>
+      <div class="sk-item"><div class="sk-itop"><span class="sk-lbl">Tailwind CSS</span><span class="sk-pct">90%</span></div><div class="sk-track"><div class="sk-fill" data-w="90"></div></div></div>
+      <div class="sk-item"><div class="sk-itop"><span class="sk-lbl">Animations</span><span class="sk-pct">82%</span></div><div class="sk-track"><div class="sk-fill" data-w="82"></div></div></div>
+    </div>
+    <div class="sk-col rv d2">
+      <div class="sk-num">(02)</div><div class="sk-name">Mobile</div>
+      <div class="sk-item"><div class="sk-itop"><span class="sk-lbl">React Native</span><span class="sk-pct">88%</span></div><div class="sk-track"><div class="sk-fill" data-w="88"></div></div></div>
+      <div class="sk-item"><div class="sk-itop"><span class="sk-lbl">Expo</span><span class="sk-pct">85%</span></div><div class="sk-track"><div class="sk-fill" data-w="85"></div></div></div>
+      <div class="sk-item"><div class="sk-itop"><span class="sk-lbl">Socket.io</span><span class="sk-pct">84%</span></div><div class="sk-track"><div class="sk-fill" data-w="84"></div></div></div>
+      <div class="sk-item"><div class="sk-itop"><span class="sk-lbl">Push Notifications</span><span class="sk-pct">78%</span></div><div class="sk-track"><div class="sk-fill" data-w="78"></div></div></div>
+      <div class="sk-item"><div class="sk-itop"><span class="sk-lbl">App Deployment</span><span class="sk-pct">76%</span></div><div class="sk-track"><div class="sk-fill" data-w="76"></div></div></div>
+    </div>
+    <div class="sk-col rv d3">
+      <div class="sk-num">(03)</div><div class="sk-name">Backend</div>
+      <div class="sk-item"><div class="sk-itop"><span class="sk-lbl">Node.js</span><span class="sk-pct">90%</span></div><div class="sk-track"><div class="sk-fill" data-w="90"></div></div></div>
+      <div class="sk-item"><div class="sk-itop"><span class="sk-lbl">Express</span><span class="sk-pct">87%</span></div><div class="sk-track"><div class="sk-fill" data-w="87"></div></div></div>
+      <div class="sk-item"><div class="sk-itop"><span class="sk-lbl">MongoDB</span><span class="sk-pct">85%</span></div><div class="sk-track"><div class="sk-fill" data-w="85"></div></div></div>
+      <div class="sk-item"><div class="sk-itop"><span class="sk-lbl">PostgreSQL</span><span class="sk-pct">80%</span></div><div class="sk-track"><div class="sk-fill" data-w="80"></div></div></div>
+      <div class="sk-item"><div class="sk-itop"><span class="sk-lbl">REST / GraphQL</span><span class="sk-pct">88%</span></div><div class="sk-track"><div class="sk-fill" data-w="88"></div></div></div>
+    </div>
+    <div class="sk-col rv d4">
+      <div class="sk-num">(04)</div><div class="sk-name">Design</div>
+      <div class="sk-item"><div class="sk-itop"><span class="sk-lbl">Figma</span><span class="sk-pct">90%</span></div><div class="sk-track"><div class="sk-fill" data-w="90"></div></div></div>
+      <div class="sk-item"><div class="sk-itop"><span class="sk-lbl">UI / UX Design</span><span class="sk-pct">86%</span></div><div class="sk-track"><div class="sk-fill" data-w="86"></div></div></div>
+      <div class="sk-item"><div class="sk-itop"><span class="sk-lbl">3D Modelling</span><span class="sk-pct">80%</span></div><div class="sk-track"><div class="sk-fill" data-w="80"></div></div></div>
+      <div class="sk-item"><div class="sk-itop"><span class="sk-lbl">Logo Design</span><span class="sk-pct">85%</span></div><div class="sk-track"><div class="sk-fill" data-w="85"></div></div></div>
+      <div class="sk-item"><div class="sk-itop"><span class="sk-lbl">Poster / Graphics</span><span class="sk-pct">88%</span></div><div class="sk-track"><div class="sk-fill" data-w="88"></div></div></div>
+    </div>
+  </div>
+</section>
+
+<hr class="d">
+
+<!-- ══ CONTACT ══ -->
+<section id="contact">
+  <div class="cl rv">
+    <div class="seye">Get In Touch</div>
+    <h2 class="rv d1">Let's build<br>something<br><em>together.</em></h2>
+    <p class="rv d2">Available for freelance projects worldwide — websites, apps, 3D, design, logos, posters. If you have an idea, let's talk.</p>
+
+    <!-- Social Icon Cards -->
+    <div class="soc-grid rv d3">
+
+      <a class="soc-card" href="mailto:harishchronicles@gmail.com" title="Email">
+        <div class="soc-icon">
+          <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+        </div>
+        <div class="soc-bottom">
+          <div>
+            <span class="soc-label">Email</span>
+            <span class="soc-val">harishchronicles</span>
+          </div>
+          <span class="soc-arr">↗</span>
+        </div>
+      </a>
+
+      <a class="soc-card" href="https://www.linkedin.com/in/harrish-kumar-950578317" target="_blank" title="LinkedIn">
+        <div class="soc-icon">
+          <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        </div>
+        <div class="soc-bottom">
+          <div>
+            <span class="soc-label">LinkedIn</span>
+            <span class="soc-val">harrish-kumar</span>
+          </div>
+          <span class="soc-arr">↗</span>
+        </div>
+      </a>
+
+      <a class="soc-card" href="https://github.com/HarrishKumar-hub" target="_blank" title="GitHub">
+        <div class="soc-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+        </div>
+        <div class="soc-bottom">
+          <div>
+            <span class="soc-label">GitHub</span>
+            <span class="soc-val">HarrishKumar-hub</span>
+          </div>
+          <span class="soc-arr">↗</span>
+        </div>
+      </a>
+
+      <a class="soc-card" href="https://www.instagram.com/harishchronicles" target="_blank" title="Instagram">
+        <div class="soc-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+        </div>
+        <div class="soc-bottom">
+          <div>
+            <span class="soc-label">Instagram</span>
+            <span class="soc-val">@harishchronicles</span>
+          </div>
+          <span class="soc-arr">↗</span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+
+  <!-- Contact Form -->
+  <div class="cf rv d2">
+    <div class="frow">
+      <label>Your Name</label>
+      <input type="text" placeholder="Your name" id="fn"/>
+    </div>
+    <div class="frow">
+      <label>Email Address</label>
+      <input type="email" placeholder="your@email.com" id="fe"/>
+    </div>
+    <div class="frow">
+      <label>Service Needed</label>
+      <input type="text" placeholder="Website · App · Design · 3D · Logo · Poster" id="fs"/>
+    </div>
+    <div class="frow">
+      <label>Tell Me About Your Project</label>
+      <textarea placeholder="Describe your idea..." id="fm"></textarea>
+    </div>
+    <button class="fsub" id="fsub">
+      <div class="fline"></div>
+      <div class="fsub-txt">
+        <span class="fsub-a">Send Message</span>
+        <span class="fsub-b">Sending… ✓</span>
+      </div>
+    </button>
+  </div>
+</section>
+
+<hr class="d">
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <p>MMXXVI © Harrish — All rights reserved.</p>
+  <div class="foot-links">
+    <a href="#work">Work</a>
+    <a href="#services">Services</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <button class="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">Back to top</button>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
+
