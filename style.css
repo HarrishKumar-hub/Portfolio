@@ -652,27 +652,20 @@ hr.d {
 
 /* ══ WORK SECTIONS ══ */
 .ws {
-  width: 90%;
-  max-width: 1200px;
-  height: clamp(500px, 80vh, 700px);
-  margin: 100px auto;
+  width: 100%;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-end;
   position: relative;
   overflow: hidden;
-  border-radius: 350px;
-  /* Pill Shape */
-  background: #111;
-  text-align: center;
-  border: 1px solid var(--line);
+  padding: 56px;
 }
 
 .ws-ov {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to bottom, rgba(7, 7, 7, .4) 0%, rgba(7, 7, 7, .8) 100%);
+  background: linear-gradient(to bottom, rgba(7, 7, 7, .06) 0%, rgba(7, 7, 7, .44) 55%, rgba(7, 7, 7, .95) 100%);
   z-index: 1;
 }
 
@@ -707,23 +700,23 @@ hr.d {
 
 .ws-num {
   font-family: var(--serif);
-  font-size: clamp(40px, 6vw, 80px);
-  color: var(--white);
+  font-size: clamp(88px, 12vw, 152px);
+  color: rgba(255, 255, 255, .042);
   font-style: italic;
   line-height: 1;
   pointer-events: none;
   position: absolute;
-  top: 60px;
+  top: 56px;
+  right: 56px;
   z-index: 2;
   user-select: none;
-  opacity: 0.8;
 }
 
 .ws-pills {
   display: flex;
   gap: 8px;
-  justify-content: center;
-  margin-bottom: 24px;
+  flex-wrap: wrap;
+  margin-bottom: 52px;
   position: relative;
   z-index: 3;
 }
@@ -754,12 +747,11 @@ hr.d {
 
 .ws-title {
   font-family: var(--serif);
-  font-size: clamp(46px, 6vw, 90px);
+  font-size: clamp(46px, 7.2vw, 110px);
   font-weight: 400;
   line-height: .97;
   letter-spacing: -.025em;
-  margin-bottom: 20px;
-  color: var(--white);
+  margin-bottom: 26px;
 }
 
 .ws-title em {
@@ -768,17 +760,17 @@ hr.d {
 
 .ws-desc {
   font-size: 14px;
-  line-height: 1.8;
+  line-height: 1.85;
   color: var(--dim);
-  max-width: 500px;
-  margin: 0 auto 40px;
+  max-width: 540px;
+  margin-bottom: 44px;
 }
 
 .ws-meta {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: 20px;
+  gap: 36px;
+  flex-wrap: wrap;
 }
 
 .ws-stack {
