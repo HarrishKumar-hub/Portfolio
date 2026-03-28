@@ -5,10 +5,13 @@ const ldpct = document.getElementById('ldpct');
 let p = 0;
 const li = setInterval(() => {
   p += Math.random() * 20;
-  if (p >= 100) { p = 100; clearInterval(li); }
+  if (p >= 100) { p = 100; }
   ldfill.style.width = p + '%';
   ldpct.textContent = Math.floor(p) + '%';
-  if (p === 100) setTimeout(() => { loader.classList.add('out'); setTimeout(() => { loader.style.display = 'none'; }, 800); }, 200);
+  if (p === 100) {
+    clearInterval(li);
+    setTimeout(() => { loader.classList.add('out'); setTimeout(() => { loader.style.display = 'none'; }, 800); }, 200);
+  }
 }, 100);
 
 /* ── SCROLL PROGRESS ── */
@@ -133,13 +136,19 @@ document.querySelectorAll('.soc-card').forEach(card => {
 });
 
 /* ── FORM SUBMIT ── */
-document.getElementById('fsub').addEventListener('click', () => {
-  const n = document.getElementById('fn').value;
-  const e = document.getElementById('fe').value;
-  const s = document.getElementById('fs').value;
-  const m = document.getElementById('fm').value;
+const fsubBtn = document.getElementById('fsub');
+fsubBtn.addEventListener('click', () => {
+  const n = document.getElementById('fn').value.trim();
+  const e = document.getElementById('fe').value.trim();
+  const s = document.getElementById('fs').value.trim();
+  const m = document.getElementById('fm').value.trim();
   if (!n || !e) return;
+  fsubBtn.classList.add('sent');
   const sub = encodeURIComponent(`Portfolio Inquiry — ${s || 'General'}`);
   const bod = encodeURIComponent(`Hi Harrish,\n\nName: ${n}\nEmail: ${e}\nService: ${s}\n\n${m}`);
-  window.location.href = `mailto:harishchronicles@gmail.com?subject=${sub}&body=${bod}`;
+  setTimeout(() => { window.location.href = `mailto:harishchronicles@gmail.com?subject=${sub}&body=${bod}`; }, 400);
 });
+
+/* ── BACK TO TOP ── */
+const backTopBtn = document.querySelector('.back-top');
+if (backTopBtn) backTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
