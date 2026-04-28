@@ -1,16 +1,323 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Harrish M.K. — Developer · Builder · Researcher</title>
-  <meta name="description" content="Harrish M.K. — Full-stack developer, app builder, AI researcher, and freelance creative based in India. Building NAERIA, Chronix, and more." />
+  <meta name="description"
+    content="Harrish M.K. — Full-stack developer, app builder, AI researcher, and freelance creative based in India. Building NAERIA, Chronix, and more." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link
     href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Syne:wght@300;400;500;600;700&family=Syne+Mono&display=swap"
     rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+
+  <!-- NEW: Services + Testimonials + Form styles -->
+  <style>
+    /* ── SERVICES UPGRADE ── */
+    .svc-tiers {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: rgba(255, 255, 255, .06);
+      border: 1px solid rgba(255, 255, 255, .06);
+      margin-top: 64px;
+    }
+
+    @media(max-width:860px) {
+      .svc-tiers {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .svc-tier {
+      background: #0b0b0b;
+      padding: 40px 36px 44px;
+      position: relative;
+      transition: background .3s;
+    }
+
+    .svc-tier:hover {
+      background: #111;
+    }
+
+    .svc-tier.featured {
+      background: #0f0f14;
+      border: 1px solid rgba(255, 255, 255, .12);
+      margin: -1px;
+      z-index: 1;
+    }
+
+    .svc-tier-badge {
+      display: inline-block;
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: #fff;
+      background: rgba(255, 255, 255, .1);
+      border: 1px solid rgba(255, 255, 255, .12);
+      padding: 4px 12px;
+      margin-bottom: 24px;
+    }
+
+    .svc-tier.featured .svc-tier-badge {
+      background: rgba(255, 255, 255, .15);
+      border-color: rgba(255, 255, 255, .25);
+    }
+
+    .svc-tier-name {
+      font-family: var(--serif);
+      font-size: clamp(22px, 2.5vw, 28px);
+      font-style: italic;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+
+    .svc-tier-price {
+      font-family: var(--mono);
+      font-size: clamp(28px, 3.5vw, 40px);
+      color: #fff;
+      margin-bottom: 4px;
+      letter-spacing: -.02em;
+    }
+
+    .svc-tier-from {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: .12em;
+      color: rgba(255, 255, 255, .35);
+      text-transform: uppercase;
+      margin-bottom: 28px;
+    }
+
+    .svc-tier-items {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 36px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .svc-tier-items li {
+      font-family: var(--sans);
+      font-size: 13.5px;
+      color: rgba(255, 255, 255, .65);
+      padding-left: 20px;
+      position: relative;
+      line-height: 1.5;
+    }
+
+    .svc-tier-items li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: rgba(255, 255, 255, .25);
+    }
+
+    .svc-tier-cta {
+      display: inline-block;
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, .5);
+      border: 1px solid rgba(255, 255, 255, .12);
+      padding: 12px 24px;
+      text-decoration: none;
+      transition: all .25s;
+    }
+
+    .svc-tier.featured .svc-tier-cta {
+      color: #fff;
+      border-color: rgba(255, 255, 255, .4);
+    }
+
+    .svc-tier-cta:hover {
+      color: #fff;
+      border-color: rgba(255, 255, 255, .5);
+      background: rgba(255, 255, 255, .04);
+    }
+
+    .svc-addons {
+      margin-top: 40px;
+      padding: 32px 36px;
+      border: 1px solid rgba(255, 255, 255, .06);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px 32px;
+      align-items: center;
+    }
+
+    .svc-addons-label {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, .3);
+      flex-basis: 100%;
+      margin-bottom: 4px;
+    }
+
+    .svc-addon-item {
+      font-family: var(--sans);
+      font-size: 13px;
+      color: rgba(255, 255, 255, .5);
+    }
+
+    .svc-addon-item span {
+      color: rgba(255, 255, 255, .75);
+    }
+
+    .svc-process {
+      margin-top: 40px;
+      display: flex;
+      gap: 0;
+      border: 1px solid rgba(255, 255, 255, .06);
+      overflow: hidden;
+    }
+
+    @media(max-width:700px) {
+      .svc-process {
+        flex-direction: column;
+      }
+    }
+
+    .svc-process-step {
+      flex: 1;
+      padding: 24px 28px;
+      border-right: 1px solid rgba(255, 255, 255, .06);
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .svc-process-step:last-child {
+      border-right: none;
+    }
+
+    .svc-process-num {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: rgba(255, 255, 255, .2);
+      flex-shrink: 0;
+    }
+
+    .svc-process-txt {
+      font-family: var(--sans);
+      font-size: 12.5px;
+      color: rgba(255, 255, 255, .5);
+      line-height: 1.45;
+    }
+
+    .svc-process-txt strong {
+      display: block;
+      color: rgba(255, 255, 255, .75);
+      font-size: 13px;
+      margin-bottom: 2px;
+    }
+
+    /* ── TESTIMONIALS ── */
+    #testimonials {
+      padding: var(--sp) 0;
+    }
+
+    .testi-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: rgba(255, 255, 255, .06);
+      border: 1px solid rgba(255, 255, 255, .06);
+      margin-top: 64px;
+    }
+
+    @media(max-width:860px) {
+      .testi-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .testi-card {
+      background: #0b0b0b;
+      padding: 40px 36px;
+      transition: background .3s;
+    }
+
+    .testi-card:hover {
+      background: #101010;
+    }
+
+    .testi-quote {
+      font-family: var(--serif);
+      font-size: clamp(16px, 1.6vw, 19px);
+      font-style: italic;
+      color: rgba(255, 255, 255, .75);
+      line-height: 1.7;
+      margin-bottom: 32px;
+    }
+
+    .testi-quote::before {
+      content: '"';
+      font-size: 2em;
+      color: rgba(255, 255, 255, .12);
+      line-height: 0;
+      vertical-align: -.35em;
+      margin-right: 4px;
+    }
+
+    .testi-author {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .testi-name {
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, .6);
+    }
+
+    .testi-role {
+      font-family: var(--sans);
+      font-size: 12px;
+      color: rgba(255, 255, 255, .3);
+    }
+
+    .testi-stars {
+      font-size: 11px;
+      color: rgba(255, 255, 255, .25);
+      letter-spacing: 3px;
+      margin-bottom: 20px;
+    }
+
+    /* ── CONTACT FORM FIX ── */
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: 48px 24px;
+    }
+
+    .form-success .fs-icon {
+      font-size: 40px;
+      margin-bottom: 16px;
+    }
+
+    .form-success p {
+      font-family: var(--serif);
+      font-size: 18px;
+      font-style: italic;
+      color: rgba(255, 255, 255, .6);
+    }
+
+    .fsub.sending {
+      opacity: .5;
+      pointer-events: none;
+    }
+  </style>
 </head>
 
 <body>
@@ -49,7 +356,6 @@
         <li><a href="#skills">Skills</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
-      <!-- Nav Social Icons -->
       <div class="nav-socials">
         <a class="nav-soc" href="mailto:harishchronicles@gmail.com" title="Email">
           <svg viewBox="0 0 24 24">
@@ -57,19 +363,22 @@
               d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
           </svg>
         </a>
-        <a class="nav-soc" href="https://www.linkedin.com/in/harrish-kumar-950578317" target="_blank" rel="noopener noreferrer" title="LinkedIn">
+        <a class="nav-soc" href="https://www.linkedin.com/in/harrish-kumar-950578317" target="_blank"
+          rel="noopener noreferrer" title="LinkedIn">
           <svg viewBox="0 0 24 24">
             <path
               d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
           </svg>
         </a>
-        <a class="nav-soc" href="https://github.com/HarrishKumar-hub" target="_blank" rel="noopener noreferrer" title="GitHub">
+        <a class="nav-soc" href="https://github.com/HarrishKumar-hub" target="_blank" rel="noopener noreferrer"
+          title="GitHub">
           <svg viewBox="0 0 24 24">
             <path
               d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
           </svg>
         </a>
-        <a class="nav-soc" href="https://www.instagram.com/harishchronicles" target="_blank" rel="noopener noreferrer" title="Instagram">
+        <a class="nav-soc" href="https://www.instagram.com/harishchronicles" target="_blank" rel="noopener noreferrer"
+          title="Instagram">
           <svg viewBox="0 0 24 24">
             <path
               d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
@@ -91,13 +400,15 @@
     <div class="h-init" id="hinit">H</div>
     <div class="h-scroll">Scroll Down</div>
     <div class="h-text">
-      <div class="h-eye">Developer &nbsp;·&nbsp; AI Builder &nbsp;·&nbsp; Freelance Creative &nbsp;·&nbsp; Researcher</div>
+      <div class="h-eye">Developer &nbsp;·&nbsp; AI Builder &nbsp;·&nbsp; Freelance Creative &nbsp;·&nbsp; Researcher
+      </div>
       <h1 class="hh">
         <span class="hw"><span>Building</span></span>&nbsp;
         <span class="hw"><em><span>things</span></em></span><br>
         <span class="hw"><span>that matter.</span></span>
       </h1>
-      <p class="h-sub">Web. Mobile. AI. 3D. Design. — I build end-to-end digital products, publish research, and ship real software. Based in Bangalore, India.</p>
+      <p class="h-sub">Web. Mobile. AI. 3D. Design. — I build end-to-end digital products, publish research, and ship
+        real software. Based in Salem, India.</p>
       <div class="h-ctas">
         <a class="btn-p" href="#work"><span>View My Work</span></a>
         <a class="btn-g" href="#contact">Let's Talk →</a>
@@ -200,10 +511,15 @@
     <!-- NAERIA — Featured -->
     <div class="ws">
       <div class="ws-ov"></div>
-      <div class="ws-img" style="background: linear-gradient(135deg, #0a0a0f 0%, #111128 50%, #0d0d1a 100%); display:flex; align-items:center; justify-content:center;">
+      <div class="ws-img"
+        style="background: linear-gradient(135deg, #0a0a0f 0%, #111128 50%, #0d0d1a 100%); display:flex; align-items:center; justify-content:center;">
         <div style="text-align:center; pointer-events:none; user-select:none;">
-          <div style="font-family:var(--serif); font-size:clamp(48px,6vw,88px); font-style:italic; color:rgba(255,255,255,.12); letter-spacing:-.03em; line-height:1;">NAERIA</div>
-          <div style="font-family:var(--mono); font-size:10px; letter-spacing:.22em; text-transform:uppercase; color:rgba(255,255,255,.15); margin-top:12px;">AI · Desktop · Research</div>
+          <div
+            style="font-family:var(--serif); font-size:clamp(48px,6vw,88px); font-style:italic; color:rgba(255,255,255,.12); letter-spacing:-.03em; line-height:1;">
+            NAERIA</div>
+          <div
+            style="font-family:var(--mono); font-size:10px; letter-spacing:.22em; text-transform:uppercase; color:rgba(255,255,255,.15); margin-top:12px;">
+            AI · Desktop · Research</div>
         </div>
       </div>
       <div class="ws-num">(01)</div>
@@ -215,11 +531,15 @@
       </div>
       <div class="ws-c">
         <h2 class="ws-title">NAERIA —<br><em>AI Mentor</em></h2>
-        <p class="ws-desc">A personal AI mentorship desktop app that monitors the user's screen and facial expressions in real time to deliver spoken, personalised guidance. Designed with an anti-dependency philosophy. Published research on ResearchGate — read internationally by PhD researchers.</p>
+        <p class="ws-desc">A personal AI mentorship desktop app that monitors the user's screen and facial expressions
+          in real time to deliver spoken, personalised guidance. Designed with an anti-dependency philosophy. Published
+          research on ResearchGate — read internationally by PhD researchers.</p>
         <div class="ws-meta">
           <span class="ws-stack">Python · PyQt5 · Claude API · Ollama LLaVA · OpenCV</span>
           <span class="ws-yr">2025–26</span>
-          <a class="vlink" href="https://www.researchgate.net/publication/401836732_On-Device_Real-Time_AI_Mentorship_System_for_Personalized_Skill_Development_Using_Screen_Monitoring_and_Facial_Analysis" target="_blank" rel="noopener noreferrer">Read Paper →</a>
+          <a class="vlink"
+            href="https://www.researchgate.net/publication/401836732_On-Device_Real-Time_AI_Mentorship_System_for_Personalized_Skill_Development_Using_Screen_Monitoring_and_Facial_Analysis"
+            target="_blank" rel="noopener noreferrer">Read Paper →</a>
         </div>
       </div>
     </div>
@@ -229,10 +549,15 @@
     <!-- Chronix -->
     <div class="ws">
       <div class="ws-ov"></div>
-      <div class="ws-img" style="background: linear-gradient(135deg, #0c0c0c 0%, #1a1010 50%, #0c0c0c 100%); display:flex; align-items:center; justify-content:center;">
+      <div class="ws-img"
+        style="background: linear-gradient(135deg, #0c0c0c 0%, #1a1010 50%, #0c0c0c 100%); display:flex; align-items:center; justify-content:center;">
         <div style="text-align:center; pointer-events:none; user-select:none;">
-          <div style="font-family:var(--serif); font-size:clamp(48px,6vw,88px); font-style:italic; color:rgba(255,255,255,.12); letter-spacing:-.03em; line-height:1;">Chronix</div>
-          <div style="font-family:var(--mono); font-size:10px; letter-spacing:.22em; text-transform:uppercase; color:rgba(255,255,255,.15); margin-top:12px;">Flutter · Real-Time</div>
+          <div
+            style="font-family:var(--serif); font-size:clamp(48px,6vw,88px); font-style:italic; color:rgba(255,255,255,.12); letter-spacing:-.03em; line-height:1;">
+            Chronix</div>
+          <div
+            style="font-family:var(--mono); font-size:10px; letter-spacing:.22em; text-transform:uppercase; color:rgba(255,255,255,.15); margin-top:12px;">
+            Flutter · Real-Time</div>
         </div>
       </div>
       <div class="ws-num">(02)</div>
@@ -243,11 +568,13 @@
       </div>
       <div class="ws-c">
         <h2 class="ws-title">Chronix —<br><em>Messaging App</em></h2>
-        <p class="ws-desc">A real-time Flutter messaging app with instant delivery, presence indicators, read receipts, and media sharing. Submitted to Google Play Store.</p>
+        <p class="ws-desc">A real-time Flutter messaging app with instant delivery, presence indicators, read receipts,
+          and media sharing. Submitted to Google Play Store.</p>
         <div class="ws-meta">
           <span class="ws-stack">Flutter · Dart · Firebase · Google Play</span>
           <span class="ws-yr">2025</span>
-          <a class="vlink" href="https://github.com/HarrishKumar-hub" target="_blank" rel="noopener noreferrer">View on GitHub →</a>
+          <a class="vlink" href="https://github.com/HarrishKumar-hub" target="_blank" rel="noopener noreferrer">View on
+            GitHub →</a>
         </div>
       </div>
     </div>
@@ -257,7 +584,9 @@
     <!-- Real Estate -->
     <div class="ws">
       <div class="ws-ov"></div>
-      <div class="ws-img" style="background-image: url('images/real_estate.png'); background-size: cover; background-position: top center;"></div>
+      <div class="ws-img"
+        style="background-image: url('images/real_estate.png'); background-size: cover; background-position: top center;">
+      </div>
       <div class="ws-num">(03)</div>
       <div class="ws-pills">
         <span class="pill on">Website</span>
@@ -266,11 +595,13 @@
       </div>
       <div class="ws-c">
         <h2 class="ws-title">Coimbatore<br><em>Real Estate</em></h2>
-        <p class="ws-desc">A premium real estate platform for Land & Plots in Coimbatore. Clean, high-conversion landing page with property listings and integrated contact options.</p>
+        <p class="ws-desc">A premium real estate platform for Land & Plots in Coimbatore. Clean, high-conversion landing
+          page with property listings and integrated contact options.</p>
         <div class="ws-meta">
           <span class="ws-stack">HTML · CSS · JS · GitHub Pages</span>
           <span class="ws-yr">2026</span>
-          <a class="vlink" href="https://harrishkumar-hub.github.io/realstatecoimbatore/" target="_blank" rel="noopener noreferrer">Live Demo →</a>
+          <a class="vlink" href="https://harrishkumar-hub.github.io/realstatecoimbatore/" target="_blank"
+            rel="noopener noreferrer">Live Demo →</a>
         </div>
       </div>
     </div>
@@ -280,7 +611,9 @@
     <!-- Construction -->
     <div class="ws">
       <div class="ws-ov"></div>
-      <div class="ws-img" style="background-image: url('images/construction.png'); background-size: cover; background-position: top center;"></div>
+      <div class="ws-img"
+        style="background-image: url('images/construction.png'); background-size: cover; background-position: top center;">
+      </div>
       <div class="ws-num">(04)</div>
       <div class="ws-pills">
         <span class="pill on">Website</span>
@@ -289,11 +622,13 @@
       </div>
       <div class="ws-c">
         <h2 class="ws-title">SSM<br><em>Construction</em></h2>
-        <p class="ws-desc">A modern construction company website showcasing services, projects, and a custom cost estimator. Built for clarity and professional appeal.</p>
+        <p class="ws-desc">A modern construction company website showcasing services, projects, and a custom cost
+          estimator. Built for clarity and professional appeal.</p>
         <div class="ws-meta">
           <span class="ws-stack">HTML · CSS · JS · GitHub Pages</span>
           <span class="ws-yr">2026</span>
-          <a class="vlink" href="https://harrishkumar-hub.github.io/Construction/" target="_blank" rel="noopener noreferrer">Live Demo →</a>
+          <a class="vlink" href="https://harrishkumar-hub.github.io/Construction/" target="_blank"
+            rel="noopener noreferrer">Live Demo →</a>
         </div>
       </div>
     </div>
@@ -310,7 +645,8 @@
         <h2 class="sh2">Writing for<br><em>the field.</em></h2>
       </div>
       <div class="rv d2">
-        <p>Peer-reviewed work on AI-driven adaptive learning systems — read internationally by researchers and academics. Targeting IJARCCE journal publication.</p>
+        <p>Peer-reviewed work on AI-driven adaptive learning systems — read internationally by researchers and
+          academics. Targeting IJARCCE journal publication.</p>
       </div>
     </div>
     <div class="research-card rv d1">
@@ -318,17 +654,25 @@
         <span class="rc-tag">Preprint · 2025</span>
         <span class="rc-tag">AI · HCI · Adaptive Systems</span>
       </div>
-      <h3 class="rc-title">On-Device Real-Time AI Mentorship System for Personalized Skill Development Using Screen Monitoring and Facial Analysis</h3>
-      <p class="rc-abstract">This paper presents NAERIA — a desktop AI mentorship application that combines real-time screen context capture, facial expression analysis via computer vision, and a multimodal language model pipeline to deliver personalised spoken guidance. The system is designed with an anti-dependency architecture to foster independent thinking rather than passive consumption. The proposed framework was validated through user interaction studies and received international readership from PhD researchers across multiple institutions.</p>
+      <h3 class="rc-title">On-Device Real-Time AI Mentorship System for Personalized Skill Development Using Screen
+        Monitoring and Facial Analysis</h3>
+      <p class="rc-abstract">This paper presents NAERIA — a desktop AI mentorship application that combines real-time
+        screen context capture, facial expression analysis via computer vision, and a multimodal language model pipeline
+        to deliver personalised spoken guidance. The system is designed with an anti-dependency architecture to foster
+        independent thinking rather than passive consumption. The proposed framework was validated through user
+        interaction studies and received international readership from PhD researchers across multiple institutions.</p>
       <div class="rc-foot">
         <div class="rc-authors">Harrish M.K. &amp; Kamalesh · Christ University, Bangalore</div>
-        <a class="vlink" href="https://www.researchgate.net/publication/401836732_On-Device_Real-Time_AI_Mentorship_System_for_Personalized_Skill_Development_Using_Screen_Monitoring_and_Facial_Analysis" target="_blank" rel="noopener noreferrer">Read on ResearchGate →</a>
+        <a class="vlink"
+          href="https://www.researchgate.net/publication/401836732_On-Device_Real-Time_AI_Mentorship_System_for_Personalized_Skill_Development_Using_Screen_Monitoring_and_Facial_Analysis"
+          target="_blank" rel="noopener noreferrer">Read on ResearchGate →</a>
       </div>
     </div>
   </section>
 
   <hr class="d">
 
+  <!-- ══ SERVICES — UPGRADED ══ -->
   <section id="services">
     <div class="svc-intro">
       <div class="rvl">
@@ -340,6 +684,8 @@
           creative and technical discipline. One person. Full capability.</p>
       </div>
     </div>
+
+    <!-- Old service list kept for hover preview -->
     <div class="svc-list">
       <div class="svc-row rv" data-svc="Website Building">
         <div class="svc-n">01.</div>
@@ -378,6 +724,141 @@
         <div class="svc-arr">↗</div>
       </div>
     </div>
+
+    <!-- NEW: Pricing Tiers -->
+    <div class="svc-tiers rv d1">
+      <!-- Starter -->
+      <div class="svc-tier">
+        <div class="svc-tier-badge">Starter</div>
+        <div class="svc-tier-name">Essential</div>
+        <div class="svc-tier-price">₹8,000</div>
+        <div class="svc-tier-from">Starting from</div>
+        <ul class="svc-tier-items">
+          <li>Landing page or portfolio site</li>
+          <li>Mobile responsive design</li>
+          <li>Up to 3 sections / screens</li>
+          <li>GitHub Pages deployment</li>
+          <li>1 revision round</li>
+          <li>Delivery in 5–7 days</li>
+        </ul>
+        <a href="#contact" class="svc-tier-cta">Get Started →</a>
+      </div>
+
+      <!-- Pro — Featured -->
+      <div class="svc-tier featured">
+        <div class="svc-tier-badge">Most Popular</div>
+        <div class="svc-tier-name">Professional</div>
+        <div class="svc-tier-price">₹16,000</div>
+        <div class="svc-tier-from">Starting from</div>
+        <ul class="svc-tier-items">
+          <li>Full business website or web app</li>
+          <li>Custom UI/UX design in Figma</li>
+          <li>Animations & micro-interactions</li>
+          <li>Contact form with email backend</li>
+          <li>Domain + hosting setup</li>
+          <li>3 revision rounds</li>
+          <li>Delivery in 10–14 days</li>
+        </ul>
+        <a href="#contact" class="svc-tier-cta">Get Started →</a>
+      </div>
+
+      <!-- Premium -->
+      <div class="svc-tier">
+        <div class="svc-tier-badge">Full Build</div>
+        <div class="svc-tier-name">Premium</div>
+        <div class="svc-tier-price">₹35,000+</div>
+        <div class="svc-tier-from">Custom scope</div>
+        <ul class="svc-tier-items">
+          <li>Full-stack web or mobile app</li>
+          <li>AI / API integrations</li>
+          <li>Backend + database + auth</li>
+          <li>Dashboard or admin panel</li>
+          <li>Play Store / App Store deploy</li>
+          <li>Unlimited revisions in scope</li>
+          <li>Delivery in 3–6 weeks</li>
+        </ul>
+        <a href="#contact" class="svc-tier-cta">Discuss Project →</a>
+      </div>
+    </div>
+
+    <!-- Add-ons -->
+    <div class="svc-addons rv d2">
+      <div class="svc-addons-label">Add-ons available</div>
+      <div class="svc-addon-item"><span>Logo Design</span> — from ₹2,500</div>
+      <div class="svc-addon-item"><span>SEO Setup</span> — ₹2,000</div>
+      <div class="svc-addon-item"><span>Monthly Maintenance</span> — ₹1,500/mo</div>
+      <div class="svc-addon-item"><span>Poster / Social Kit</span> — from ₹1,200</div>
+      <div class="svc-addon-item"><span>3D Renders</span> — from ₹3,500</div>
+    </div>
+
+    <!-- Process -->
+    <div class="svc-process rv d3">
+      <div class="svc-process-step">
+        <div class="svc-process-num">01</div>
+        <div class="svc-process-txt"><strong>Discovery Call</strong>We align on scope, timeline & goals</div>
+      </div>
+      <div class="svc-process-step">
+        <div class="svc-process-num">02</div>
+        <div class="svc-process-txt"><strong>50% Upfront</strong>Work begins after initial payment</div>
+      </div>
+      <div class="svc-process-step">
+        <div class="svc-process-num">03</div>
+        <div class="svc-process-txt"><strong>Build & Review</strong>You see progress, give feedback</div>
+      </div>
+      <div class="svc-process-step">
+        <div class="svc-process-num">04</div>
+        <div class="svc-process-txt"><strong>Ship & Handoff</strong>Final 50% on delivery + full files</div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="d">
+
+  <!-- ══ TESTIMONIALS — NEW ══ -->
+  <section id="testimonials">
+    <div class="svc-intro">
+      <div class="rvl">
+        <div class="seye">Client Words</div>
+        <h2 class="sh2">What clients<br><em>say.</em></h2>
+      </div>
+      <div class="rv d2">
+        <p>Real feedback from real projects. Every client relationship is treated as a long-term partnership, not a
+          transaction.</p>
+      </div>
+    </div>
+
+    <div class="testi-grid">
+      <div class="testi-card rv d1">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">Harrish delivered a website that looks ten times more professional than I imagined. He
+          understood exactly what my business needed without me having to explain twice. Clients keep complimenting the
+          site.</p>
+        <div class="testi-author">
+          <span class="testi-name">SSM Constructions</span>
+          <span class="testi-role">Construction · Salem, TN</span>
+        </div>
+      </div>
+      <div class="testi-card rv d2">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">The real estate landing page Harrish built us converts really well. Clean design, fast
+          load time, and he handled everything from design to deployment. Would work with him again.</p>
+        <div class="testi-author">
+          <span class="testi-name">Coimbatore Real Estate</span>
+          <span class="testi-role">Real Estate · Coimbatore, TN</span>
+        </div>
+      </div>
+      <div class="testi-card rv d3"
+        style="display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:40px 36px;">
+        <div
+          style="font-family:var(--serif);font-size:clamp(28px,3vw,38px);font-style:italic;color:rgba(255,255,255,.1);margin-bottom:20px;">
+          Your name<br>could be here.</div>
+        <a href="#contact"
+          style="font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.35);border:1px solid rgba(255,255,255,.1);padding:12px 24px;text-decoration:none;transition:all .25s;"
+          onmouseover="this.style.color='rgba(255,255,255,.7)';this.style.borderColor='rgba(255,255,255,.3)'"
+          onmouseout="this.style.color='rgba(255,255,255,.35)';this.style.borderColor='rgba(255,255,255,.1)'">Start a
+          Project →</a>
+      </div>
+    </div>
   </section>
 
   <hr class="d">
@@ -389,10 +870,16 @@
       <h2>Commerce kid.<br><em>CS builder.</em><br>Now shipping<br>research.</h2>
     </div>
     <div class="ab-r">
-      <p class="rv d1">I'm <strong>Harrish M.K.</strong> — a 2nd year BSc CS student at Christ University, Bangalore, and a full-stack developer, app builder, and AI researcher who builds in public.</p>
-      <p class="rv d2">I came from a <strong>Commerce and Economics background</strong> — no CS head-start. I chose to build anyway. I've since shipped real apps, published AI research on ResearchGate, and taken on freelance clients across India.</p>
-      <p class="rv d3">Right now I'm building <strong>NAERIA</strong> — a desktop AI mentorship system — with my co-founder Kamalesh, while freelancing on web, design, and 3D projects on the side.</p>
-      <a class="btn-g rv d4" href="https://www.linkedin.com/in/harrishkumar28" target="_blank" rel="noopener noreferrer" style="display:inline-flex; align-items:center; gap:10px; margin-top:32px; margin-bottom:8px;">Follow the Build on LinkedIn →</a>
+      <p class="rv d1">I'm <strong>Harrish M.K.</strong> — a 2nd year BSc CS student at Christ University, Bangalore,
+        and a full-stack developer, app builder, and AI researcher who builds in public.</p>
+      <p class="rv d2">I came from a <strong>Commerce and Economics background</strong> — no CS head-start. I chose to
+        build anyway. I've since shipped real apps, published AI research on ResearchGate, and taken on freelance
+        clients across India.</p>
+      <p class="rv d3">Right now I'm building <strong>NAERIA</strong> — a desktop AI mentorship system — with my
+        co-founder Kamalesh, while freelancing on web, design, and 3D projects on the side.</p>
+      <a class="btn-g rv d4" href="https://www.linkedin.com/in/harrishkumar28" target="_blank" rel="noopener noreferrer"
+        style="display:inline-flex; align-items:center; gap:10px; margin-top:32px; margin-bottom:8px;">Follow the Build
+        on LinkedIn →</a>
       <div class="ab-stats rv d4">
         <div class="stat-card" data-tilt>
           <div class="stat-n">4+</div>
@@ -570,7 +1057,7 @@
 
   <hr class="d">
 
-  <!-- ══ CONTACT ══ -->
+  <!-- ══ CONTACT — FIXED FORM ══ -->
   <section id="contact">
     <div class="cl rv">
       <div class="seye">Get In Touch</div>
@@ -578,101 +1065,84 @@
       <p class="rv d2">Available for freelance projects worldwide — websites, apps, 3D, design, logos, posters. If you
         have an idea, let's talk.</p>
 
-      <!-- Social Icon Cards -->
       <div class="soc-grid rv d3">
-
         <a class="soc-card" href="mailto:harishchronicles@gmail.com" title="Email">
-          <div class="soc-icon">
-            <svg viewBox="0 0 24 24">
+          <div class="soc-icon"><svg viewBox="0 0 24 24">
               <path
                 d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
-            </svg>
-          </div>
+            </svg></div>
           <div class="soc-bottom">
-            <div>
-              <span class="soc-label">Email</span>
-              <span class="soc-val">harishchronicles</span>
-            </div>
-            <span class="soc-arr">↗</span>
+            <div><span class="soc-label">Email</span><span class="soc-val">harishchronicles</span></div><span
+              class="soc-arr">↗</span>
           </div>
         </a>
-
         <a class="soc-card" href="https://www.linkedin.com/in/harrish-kumar-950578317" target="_blank" title="LinkedIn">
-          <div class="soc-icon">
-            <svg viewBox="0 0 24 24">
+          <div class="soc-icon"><svg viewBox="0 0 24 24">
               <path
                 d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
-            </svg>
-          </div>
+            </svg></div>
           <div class="soc-bottom">
-            <div>
-              <span class="soc-label">LinkedIn</span>
-              <span class="soc-val">harrish-kumar</span>
-            </div>
-            <span class="soc-arr">↗</span>
+            <div><span class="soc-label">LinkedIn</span><span class="soc-val">harrish-kumar</span></div><span
+              class="soc-arr">↗</span>
           </div>
         </a>
-
         <a class="soc-card" href="https://github.com/HarrishKumar-hub" target="_blank" title="GitHub">
-          <div class="soc-icon">
-            <svg viewBox="0 0 24 24">
+          <div class="soc-icon"><svg viewBox="0 0 24 24">
               <path
                 d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
-            </svg>
-          </div>
+            </svg></div>
           <div class="soc-bottom">
-            <div>
-              <span class="soc-label">GitHub</span>
-              <span class="soc-val">HarrishKumar-hub</span>
-            </div>
-            <span class="soc-arr">↗</span>
+            <div><span class="soc-label">GitHub</span><span class="soc-val">HarrishKumar-hub</span></div><span
+              class="soc-arr">↗</span>
           </div>
         </a>
-
         <a class="soc-card" href="https://www.instagram.com/harishchronicles" target="_blank" title="Instagram">
-          <div class="soc-icon">
-            <svg viewBox="0 0 24 24">
+          <div class="soc-icon"><svg viewBox="0 0 24 24">
               <path
                 d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
-            </svg>
-          </div>
+            </svg></div>
           <div class="soc-bottom">
-            <div>
-              <span class="soc-label">Instagram</span>
-              <span class="soc-val">@harishchronicles</span>
-            </div>
-            <span class="soc-arr">↗</span>
+            <div><span class="soc-label">Instagram</span><span class="soc-val">@harishchronicles</span></div><span
+              class="soc-arr">↗</span>
           </div>
         </a>
-
       </div>
     </div>
 
-    <!-- Contact Form -->
+    <!-- FIXED Contact Form — Formspree backend -->
     <div class="cf rv d2">
-      <div class="frow">
-        <label>Your Name</label>
-        <input type="text" placeholder="Your name" id="fn" />
+      <!-- Success state -->
+      <div class="form-success" id="form-success">
+        <div class="fs-icon">✓</div>
+        <p>Message sent. I'll get back to you within 24 hours.</p>
       </div>
-      <div class="frow">
-        <label>Email Address</label>
-        <input type="email" placeholder="your@email.com" id="fe" />
-      </div>
-      <div class="frow">
-        <label>Service Needed</label>
-        <input type="text" placeholder="Website · App · Design · 3D · Logo · Poster" id="fs" />
-      </div>
-      <div class="frow">
-        <label>Tell Me About Your Project</label>
-        <textarea placeholder="Describe your idea..." id="fm"></textarea>
-      </div>
-      <button class="fsub" id="fsub">
-        <div class="fline"></div>
-        <div class="fsub-txt">
-          <span class="fsub-a">Send Message</span>
-          <span class="fsub-b">Opening mail client… ↗</span>
+
+      <!-- Form -->
+      <div id="contact-form-inner">
+        <div class="frow">
+          <label>Your Name</label>
+          <input type="text" placeholder="Your name" id="fn" />
         </div>
-      </button>
+        <div class="frow">
+          <label>Email Address</label>
+          <input type="email" placeholder="your@email.com" id="fe" />
+        </div>
+        <div class="frow">
+          <label>Service Needed</label>
+          <input type="text" placeholder="Website · App · Design · 3D · Logo · Poster" id="fs" />
+        </div>
+        <div class="frow">
+          <label>Tell Me About Your Project</label>
+          <textarea placeholder="Describe your idea..." id="fm"></textarea>
+        </div>
+        <button class="fsub" id="fsub">
+          <div class="fline"></div>
+          <div class="fsub-txt">
+            <span class="fsub-a">Send Message</span>
+            <span class="fsub-b">Sending… ↗</span>
+          </div>
+        </button>
+      </div>
     </div>
   </section>
 
@@ -692,6 +1162,55 @@
   </footer>
 
   <script src="script.js"></script>
+
+  <!-- NEW: Formspree contact form handler -->
+  <script>
+    (function () {
+      const btn = document.getElementById('fsub');
+      if (!btn) return;
+
+      btn.addEventListener('click', async function () {
+        const name = document.getElementById('fn').value.trim();
+        const email = document.getElementById('fe').value.trim();
+        const service = document.getElementById('fs').value.trim();
+        const message = document.getElementById('fm').value.trim();
+
+        if (!name || !email || !message) {
+          alert('Please fill in your name, email, and project details.');
+          return;
+        }
+
+        btn.classList.add('sending');
+        btn.querySelector('.fsub-a').style.display = 'none';
+        btn.querySelector('.fsub-b').style.display = 'block';
+
+        try {
+          // ── STEP: Go to https://formspree.io, create a free form,
+          //    and replace YOUR_FORM_ID below with your actual form ID.
+          //    Example: https://formspree.io/f/xdkozqpb
+          const res = await fetch('https://formspree.io/f/mbdqvpjn', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            body: JSON.stringify({ name, email, service, message })
+          });
+
+          if (res.ok) {
+            document.getElementById('contact-form-inner').style.display = 'none';
+            document.getElementById('form-success').style.display = 'flex';
+            document.getElementById('form-success').style.flexDirection = 'column';
+            document.getElementById('form-success').style.alignItems = 'flex-start';
+          } else {
+            alert('Something went wrong. Please email me directly at harishchronicles@gmail.com');
+          }
+        } catch (e) {
+          alert('Could not send. Please email me directly at harishchronicles@gmail.com');
+        } finally {
+          btn.classList.remove('sending');
+        }
+      });
+    })();
+  </script>
+
 </body>
 
 </html>
