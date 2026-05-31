@@ -1,4 +1,4 @@
-﻿/* ── LOADER ── */
+/* ── LOADER ── */
 const loader = document.getElementById('loader');
 const ldfill = document.getElementById('ldfill');
 const ldpct = document.getElementById('ldpct');
@@ -59,18 +59,7 @@ const ro = new IntersectionObserver(entries => {
 }, { threshold: 0.07 });
 document.querySelectorAll('.rv,.rvl,.ws').forEach(el => ro.observe(el));
 
-/* ── SKILL BARS ── */
-const bo = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      e.target.querySelectorAll('.sk-fill').forEach((b, i) => {
-        setTimeout(() => { b.style.width = b.dataset.w + '%'; }, i * 80 + 200);
-      });
-      bo.unobserve(e.target);
-    }
-  });
-}, { threshold: 0.2 });
-document.querySelectorAll('.sk-col').forEach(c => bo.observe(c));
+
 
 /* ── TILT CARDS ── */
 document.querySelectorAll('[data-tilt]').forEach(card => {
@@ -135,19 +124,7 @@ document.querySelectorAll('.soc-card').forEach(card => {
   card.addEventListener('mouseleave', () => { card.style.transform = 'translateY(0)'; });
 });
 
-/* ── FORM SUBMIT ── */
-const fsubBtn = document.getElementById('fsub');
-fsubBtn.addEventListener('click', () => {
-  const n = document.getElementById('fn').value.trim();
-  const e = document.getElementById('fe').value.trim();
-  const s = document.getElementById('fs').value.trim();
-  const m = document.getElementById('fm').value.trim();
-  if (!n || !e) return;
-  fsubBtn.classList.add('sent');
-  const sub = encodeURIComponent(`Portfolio Inquiry — ${s || 'General'}`);
-  const bod = encodeURIComponent(`Hi Harrish,\n\nName: ${n}\nEmail: ${e}\nService: ${s}\n\n${m}`);
-  setTimeout(() => { window.location.href = `mailto:harishchronicles@gmail.com?subject=${sub}&body=${bod}`; }, 400);
-});
+
 
 /* ── BACK TO TOP ── */
 const backTopBtn = document.querySelector('.back-top');

@@ -1,4 +1,4 @@
-﻿*,
+*,
 *::before,
 *::after {
   box-sizing: border-box;
@@ -1732,4 +1732,25 @@ footer p {
   .ab-stats {
     grid-template-columns: 1fr;
   }
+}
+
+/* ── ADDITIONAL UPGRADES ── */
+.available-badge {
+  display: inline-block;
+  background: #00ff8822;
+  color: #00ff88;
+  border: 1px solid #00ff8844;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  letter-spacing: 0.05em;
+  margin-top: 8px;
+}
+
+.sk-list {
+  font-family: var(--sans);
+  font-size: 15px;
+  line-height: 1.8;
+  color: var(--dim);
+  letter-spacing: 0.03em;
 }
